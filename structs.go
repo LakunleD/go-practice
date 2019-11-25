@@ -18,6 +18,8 @@ func main() {
 
 	fmt.Println(t1.Symbol)
 
+	fmt.Println(t1.Value())
+
 	t2 := Trade{
 		Symbol: "MSFT",
 		Volume: 10,
@@ -33,4 +35,12 @@ func main() {
 	t3.Price = 99.91
 	t3.Buy = true
 	fmt.Printf("%+v\n", t3)
+}
+
+func (t *Trade) Value() float64 {
+	value := float64(t.Volume) * t.Price
+	if t.Buy {
+		value = -value
+	}
+	return value
 }
